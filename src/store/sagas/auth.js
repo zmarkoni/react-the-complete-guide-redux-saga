@@ -4,8 +4,6 @@
 import {put, delay} from 'redux-saga/effects';
 import axios from "axios";
 import * as actions from "../actions/index";
-import {authFail, authStart, authSuccess, checkAuthTimeout} from "../actions/auth";
-import {logout} from "../actions/index";
 
 export function* logoutSaga(action) {
     // yield means to execute that step and wait to finish

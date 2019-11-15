@@ -1,5 +1,3 @@
-import {authFail, authSuccess, checkAuthTimeout} from "./auth";
-
 export {
     addIngredient,
     removeIngredient,
@@ -12,6 +10,12 @@ export {
     purchaseBurger,
     purchaseInit,
     fetchOrders,
+    purchaseBurgerStart,
+    purchaseBurgerSuccess,
+    purchaseBurgerFail,
+    fetchOrdersStart,
+    fetchOrdersSuccess,
+    fetchOrdersFail
 } from './order';
 
 export {
