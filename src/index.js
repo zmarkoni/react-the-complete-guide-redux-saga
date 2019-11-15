@@ -19,6 +19,10 @@ import burgerBuilderReducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
 import authReducer from './store/reducers/auth';
 
+// add Saga
+import createSagaMiddleware from 'redux-saga';
+import { watchAuth } from './store/sagas';
+
 const rootReducer = combineReducers({
     burgerBuilder: burgerBuilderReducer,
     order: orderReducer,
@@ -31,9 +35,13 @@ const rootReducer = combineReducers({
 
 // reduxDevTools no need to install locally since it is part of Chrome extension
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(rootReducer, composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, sagaMiddleware)
 ));
+
+sagaMiddleware.run(watchAuth);
 
 const app = (
     <Provider store={store}>

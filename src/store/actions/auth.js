@@ -24,12 +24,14 @@ export const authFail = (error) => {
     };
 };
 
+// Replaced by Saga
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
-    localStorage.removeItem('userId');
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('expirationDate');
+    // localStorage.removeItem('userId');
     return {
-        type: actionTypes.AUTH_LOGOUT
+        //type: actionTypes.AUTH_LOGOUT
+        type: actionTypes.AUTH_INITIATE_LOGOUT
     };
 };
 
