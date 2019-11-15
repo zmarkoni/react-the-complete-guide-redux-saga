@@ -24,14 +24,19 @@ export const authFail = (error) => {
     };
 };
 
-// Replaced by Saga
 export const logout = () => {
     // localStorage.removeItem('token');
     // localStorage.removeItem('expirationDate');
     // localStorage.removeItem('userId');
     return {
         //type: actionTypes.AUTH_LOGOUT
-        type: actionTypes.AUTH_INITIATE_LOGOUT
+        type: actionTypes.AUTH_INITIATE_LOGOUT // will be handled by Saga
+    };
+};
+
+export const logoutSucceed = () => {
+    return {
+        type: actionTypes.AUTH_LOGOUT
     };
 };
 
@@ -42,12 +47,11 @@ export const setAuthRedirectPath = (path) => {
     };
 };
 
-export const checkAuthTimeout = (expirationDate) => {
-    return dispatch => {
-        setTimeout(() => {
-            dispatch(logout());
-        }, expirationDate * 1000);
-    };
+export const checkAuthTimeout = (expirationTime) => {
+    return {
+        type: actionTypes.AUTH_CHECK_TIMEOUT, // will be handled by Saga
+        expirationTime: expirationTime
+     };
 };
 
 export const auth = (email, password, isSignup) => {
