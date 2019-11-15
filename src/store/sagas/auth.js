@@ -1,15 +1,20 @@
 // Sagas are used for handling SIDE effects like ASYNC code, local storage...
 // Sagas are related to ACTIONS
 // function* is Generator so we can use ASYNC code
-import {put, delay} from 'redux-saga/effects';
+import {put, delay, call} from 'redux-saga/effects';
 import axios from "axios";
 import * as actions from "../actions/index";
 
 export function* logoutSaga(action) {
     // yield means to execute that step and wait to finish
-    yield localStorage.removeItem('token');
-    yield localStorage.removeItem('expirationDate');
-    yield localStorage.removeItem('userId');
+    // If we want to TEST this, than it is better to use CALL, since we can MOCK this
+    yield call([localStorage, "removeItem"], "token");
+    yield call([localStorage, "removeItem"], "expirationDate");
+    yield call([localStorage, "removeItem"], "userId");
+
+    // yield localStorage.removeItem('token');
+    // yield localStorage.removeItem('expirationDate');
+    // yield localStorage.removeItem('userId');
     yield put(actions.logoutSucceed());
 }
 
