@@ -3,7 +3,9 @@ import {authFail, authSuccess, checkAuthTimeout} from "./auth";
 export {
     addIngredient,
     removeIngredient,
-    initIngredients
+    initIngredients,
+    fetchIngredientsFailed,
+    setIngredients
 } from './burgerBuilder';
 
 export {
