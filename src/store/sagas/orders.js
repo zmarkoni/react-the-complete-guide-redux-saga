@@ -19,7 +19,7 @@ export function* fetchOrdersSaga(action) {
     try {
         const response = yield axiosInstance.get('/orders.json' + queryParams);
         const fetchedOrders = [];
-        for (let key in re  sponse.data) {
+        for (let key in response.data) {
             fetchedOrders.push({
                 ...response.data[key],
                 id: key
